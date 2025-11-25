@@ -1,0 +1,14 @@
+# Ignorar carpetas del sistema operativo (basura)
+.DS_Store
+Thumbs.db
+
+# Ignorar carpeta de librerías (si usamos Composer más adelante)
+vendor/
+
+# Ignorar archivos de configuración con contraseñas (¡MUY IMPORTANTE!)
+# Aquí pondremos tus claves de base de datos
+config/db.php
+includes/conexion.php
+
+# Ignorar archivos de entorno (variables secretas)
+.env

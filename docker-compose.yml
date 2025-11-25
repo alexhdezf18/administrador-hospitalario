@@ -1,0 +1,57 @@
+services:
+  # 1. El Servidor Web (Tu página)
+  web:
+    build: .
+    container_name: clinica-web
+    ports:
+      - "80:80" # Tu localhost:80 será el puerto 80 del contenedor
+    volumes:
+      - .:/var/www/html # Magia: Tu carpeta actual se refleja dentro del contenedor
+    depends_on:
+      - db
+    networks:
+      - clinica-network
+
+  # 2. La Base de Datos (MySQL)
+  db:
+    image: mysql:8.0
+    container_name: clinica-db
+    environment:
+      # Contraseña de root (Sigue siendo necesaria para que MySQL arranque,
+      # pero NO la usaremos en el código PHP).
+      MYSQL_ROOT_PASSWORD: root_secreto_admin
+
+      # Base de datos que se creará automáticamente
+      MYSQL_DATABASE: clinica_universidad
+
+      # AQUÍ ESTÁ LA MAGIA: Creamos un usuario específico para la App
+      MYSQL_USER: usuario_clinica
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - clinica-network
+  # 3. phpMyAdmin (Para ver la base de datos visualmente)
+  pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: clinica-pma
+    environment:
+      PMA_HOST: db # Esto es lo único que necesita para saber a dónde conectarse
+      # PMA_USER: root       <--- BORRA O COMENTA ESTA LÍNEA
+      # PMA_PASSWORD: root   <--- BORRA O COMENTA ESTA LÍNEA
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    networks:
+      - clinica-network
+
+# Volúmenes y Redes (Configuración técnica)
+volumes:
+  db_data:
+
+networks:
+  clinica-network:
+    driver: bridge
