@@ -39,8 +39,6 @@ services:
     container_name: clinica-pma
     environment:
       PMA_HOST: db # Esto es lo único que necesita para saber a dónde conectarse
-      # PMA_USER: root       <--- BORRA O COMENTA ESTA LÍNEA
-      # PMA_PASSWORD: root   <--- BORRA O COMENTA ESTA LÍNEA
     ports:
       - "8080:80"
     depends_on:
