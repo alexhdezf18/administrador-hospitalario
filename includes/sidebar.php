@@ -23,6 +23,11 @@
                         <i class="fas fa-calendar-alt me-2"></i> Gestionar Citas
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/views/admin/reportes.php">
+                        <i class="fas fa-chart-bar me-2"></i> Reportes
+                    </a>
+                </li>
 
             <?php elseif(isset($_SESSION['rol']) && $_SESSION['rol'] == 'medico'): ?>
                 <li class="nav-item">
