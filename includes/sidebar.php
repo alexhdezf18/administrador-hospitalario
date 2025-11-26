@@ -6,31 +6,55 @@
         </div>
 
         <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/views/admin/index.php">
-                    <i class="fas fa-home me-2"></i> Inicio
-                </a>
-            </li>
-
+            
             <?php if(isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin'): ?>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/views/admin/index.php">
+                        <i class="fas fa-home me-2"></i> Inicio
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/views/admin/usuarios.php">
                         <i class="fas fa-users-cog me-2"></i> Usuarios
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">
-                        <i class="fas fa-chart-bar me-2"></i> Reportes
+                    <a class="nav-link text-white" href="/views/admin/citas.php">
+                        <i class="fas fa-calendar-alt me-2"></i> Gestionar Citas
                     </a>
                 </li>
-            
-                <?php elseif(isset($_SESSION['rol']) && $_SESSION['rol'] == 'medico'): ?>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/views/medico/index.php">
-                            <i class="fas fa-calendar-check me-2"></i> Mi Agenda
-                        </a>
-                    </li>
-                <?php endif; ?>
+
+            <?php elseif(isset($_SESSION['rol']) && $_SESSION['rol'] == 'medico'): ?>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/views/medico/index.php">
+                        <i class="fas fa-calendar-check me-2"></i> Mi Agenda
+                    </a>
+                </li>
+                <?php elseif(isset($_SESSION['rol']) && $_SESSION['rol'] == 'paciente'): ?>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/views/paciente/index.php">
+                        <i class="fas fa-home me-2"></i> Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/views/paciente/historial.php">
+                        <i class="fas fa-file-medical me-2"></i> Mi Historial
+                    </a>
+                </li>
+                
+            <?php elseif(isset($_SESSION['rol']) && $_SESSION['rol'] == 'recepcionista'): ?>
+                 <li class="nav-item">
+                    <a class="nav-link text-white" href="/views/recepcionista/index.php">
+                        <i class="fas fa-home me-2"></i> Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/views/admin/citas.php">
+                        <i class="fas fa-calendar-plus me-2"></i> Citas
+                    </a>
+                </li>
+            <?php endif; ?>
+
         </ul>
         
         <div class="mt-5 px-3">
